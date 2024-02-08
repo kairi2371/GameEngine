@@ -294,7 +294,7 @@ void DirectXCommon::DepthBufferInitialize()
     depthClearValue.DepthStencil.Depth = 1.0f; // 深度値1.0f（最大値）でクリア
     depthClearValue.Format = DXGI_FORMAT_D32_FLOAT; // 深度値フォーマット
     // リソース生成
-  
+
     result = device->CreateCommittedResource(
         &depthHeapProp,
         D3D12_HEAP_FLAG_NONE,
@@ -306,7 +306,7 @@ void DirectXCommon::DepthBufferInitialize()
     // 深度ビュー用デスクリプタヒープ作成
     dsvHeapDesc.NumDescriptors = 1; // 深度ビューは1つ
     dsvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV; // デプスステンシルビュー
-  
+
     result = device->CreateDescriptorHeap(&dsvHeapDesc, IID_PPV_ARGS(&dsvHeap));
 
     // 深度ビュー作成
@@ -347,7 +347,7 @@ void DirectXCommon::UpdateFixFPS()
 
     if (elapsed < kMinCheakTime)
     {
-        while (std::chrono::steady_clock::now()-reference_<kMinTime)
+        while (std::chrono::steady_clock::now() - reference_ < kMinTime)
         {
             std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
